@@ -1,0 +1,24 @@
+{
+  "patient": { "name": "Kamala Devi", "age": 78, "sex": "F" },
+  "documents": [
+    { "id": "doc1", "label": "Cardiology Rx", "prescriber": "Dr. Rao (Cardiology)",
+      "date": "2026-03-14", "image_url": "/uploads/doc1.jpg" }
+  ],
+  "medications": [
+    { "name": "Clopidogrel", "generic": "clopidogrel", "dose": "75mg",
+      "frequency": "OD", "prescriber": "Dr. Rao (Cardiology)",
+      "started": "2026-03-14", "source_doc": "doc1",
+      "bbox": { "x": 120, "y": 340, "w": 180, "h": 28 }, "confidence": 0.94 }
+  ],
+  "conditions": [ { "name": "Type 2 diabetes", "source_doc": "doc2" } ],
+  "allergies": [ { "name": "Penicillin", "source_doc": "doc3", "confidence": 0.88 } ],
+  "labs": [ { "test": "Creatinine", "value": 1.6, "unit": "mg/dL",
+    "date": "2026-05-02", "source_doc": "doc4" } ],
+  "flags": [
+    { "id": "acb_high", "severity": "high", "category": "cognitive",
+      "title": "Anticholinergic burden score: 5",
+      "detail": "Three medications with anticholinergic activity. Score >=3 is associated with confusion and fall risk in older adults.",
+      "involved": ["Amitriptyline", "Chlorpheniramine", "Oxybutynin"],
+      "source": "ACB Scale", "mode": "geriatric" }
+  ]
+}
