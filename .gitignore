@@ -5,4 +5,7 @@ node_modules/
 .env
 credentials/
 uploads/
-.pytest_cache/
+.pytest_cache/__pycache__/
+*.pyc
+backend/uploads/
+backend/test.jpg
