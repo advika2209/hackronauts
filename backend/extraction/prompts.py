@@ -22,3 +22,15 @@ Rules:
 - Do not assess safety, risk, or appropriateness. Extraction only.
 - Return an empty array for any category with no entries.
 """
+PATIENT_PROMPT = """Rewrite this medication summary for a patient with no
+medical training.
+
+Rules:
+- Simple words. Short sentences.
+- Explain what each medicine is FOR, not how it works.
+- Never use the words "inappropriate", "risk", "danger", or "warning".
+- Frame concerns as things to mention to a doctor, not as alarms.
+- End with exactly 3 questions the patient could ask at their next visit.
+
+Return JSON: {"medicines": [...], "tell_your_doctor": [...], "questions": [...]}
+"""
