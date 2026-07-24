@@ -1,0 +1,38 @@
+{
+  "acb_scale": {
+    "amitriptyline": 3, "chlorpheniramine": 3, "oxybutynin": 3,
+    "diphenhydramine": 3, "hydroxyzine": 3, "paroxetine": 3,
+    "olanzapine": 3, "promethazine": 3, "nortriptyline": 3,
+    "cetirizine": 2, "loratadine": 1, "ranitidine": 1,
+    "furosemide": 1, "metoprolol": 1, "prednisolone": 1,
+    "warfarin": 1, "haloperidol": 1, "risperidone": 1,
+    "trazodone": 1, "carbamazepine": 2
+  },
+  "beers_list": {
+    "diazepam": "Long-acting benzodiazepine — increased fall and fracture risk",
+    "alprazolam": "Benzodiazepine — cognitive impairment and fall risk in older adults",
+    "glimepiride": "Sulfonylurea — prolonged hypoglycaemia risk in older adults",
+    "amitriptyline": "Strongly anticholinergic — sedation, confusion, orthostatic hypotension",
+    "diphenhydramine": "Strongly anticholinergic — avoid as a sleep aid in older adults",
+    "indomethacin": "NSAID — highest CNS adverse effect profile in its class",
+    "oxybutynin": "Anticholinergic — confusion and urinary retention risk"
+  },
+  "interactions": [
+    { "pair": ["warfarin", "aspirin"], "severity": "high",
+      "detail": "Additive bleeding risk. Requires monitoring or dose review." },
+    { "pair": ["warfarin", "clopidogrel"], "severity": "high",
+      "detail": "Substantially increased bleeding risk with dual therapy." },
+    { "pair": ["metformin", "furosemide"], "severity": "medium",
+      "detail": "Diuretic-induced volume depletion may impair renal clearance of metformin." },
+    { "pair": ["amitriptyline", "tramadol"], "severity": "high",
+      "detail": "Increased serotonergic and seizure risk." }
+  ],
+  "preop_hold": {
+    "clopidogrel": { "days": 7, "reason": "Antiplatelet — bleeding risk" },
+    "aspirin": { "days": 7, "reason": "Antiplatelet — bleeding risk" },
+    "warfarin": { "days": 5, "reason": "Anticoagulant — bridging may be required" },
+    "metformin": { "days": 1, "reason": "Withhold around contrast and major surgery" },
+    "ibuprofen": { "days": 3, "reason": "NSAID — platelet effect" }
+  },
+  "thresholds": { "acb_high": 3, "polypharmacy": 5, "geriatric_age": 65 }
+}
