@@ -22,3 +22,16 @@ def health():
 def demo():
     with open("mock/kamala.json") as f:
         return json.load(f)
+
+@app.post("/api/analyze")
+async def analyze(files: list[UploadFile] = File(...)):
+    saved = []
+    for i, f in enumerate(files):
+        path = f"uploads/doc{i+1}.jpg"
+        with open(path, "wb") as out:
+            shutil.copyfileobj(f.file, out)
+        saved.append({"id": f"doc{i+1}", "image_url": f"/uploads/doc{i+1}.jpg"})
+
+    with open("mock/kamala.json") as f:
+        result = json.load(f)
+    return result
