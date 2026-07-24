@@ -1,12 +1,14 @@
 import json, os
+from normalisation.drugs import normalise
 
 _PATH = os.path.join(os.path.dirname(__file__), "criteria.json")
 with open(_PATH) as f:
     C = json.load(f)
 
+
 def evaluate(record, mode="geriatric"):
     meds = record.get("medications", [])
-    names = [(m.get("generic") or m.get("name", "")).lower() for m in meds]
+    names = [normalise(m.get("generic") or m.get("name", "")) for m in meds]
     flags = []
 
     if mode == "geriatric":
