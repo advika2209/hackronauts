@@ -9,6 +9,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import json, os, shutil
 from ocr.vision_client import ocr_with_boxes
+from pydantic import BaseModel
+from review_store import save_record, get_record
+from fastapi import HTTPException
 
 app = FastAPI(title="MedThread API")
 
@@ -53,4 +56,38 @@ async def analyze(files: list[UploadFile] = File(...)):
 
     with open("mock/kamala.json") as f:
         result = json.load(f)
+    save_record("kamala", result)
     return result
+@app.get("/api/record/{record_id}")
+def get_record_endpoint(record_id: str):
+    record = get_record(record_id)
+    if not record:
+        raise HTTPException(404, "Record not found")
+    return record
+
+
+class ReviewUpdate(BaseModel):
+    action: str  # "approve" | "edit" | "reject"
+    data: dict | None = None  # new field values, only used when action == "edit"
+
+
+@app.patch("/api/record/{record_id}/{category}/{index}")
+def review_item(record_id: str, category: str, index: int, update: ReviewUpdate):
+    record = get_record(record_id)
+    if not record or category not in record:
+        raise HTTPException(404, "Record or category not found")
+    items = record[category]
+    if index >= len(items):
+        raise HTTPException(404, "Item index out of range")
+
+    if update.action == "approve":
+        items[index]["review_status"] = "approved"
+    elif update.action == "reject":
+        items[index]["review_status"] = "rejected"
+    elif update.action == "edit":
+        items[index].update(update.data or {})
+        items[index]["review_status"] = "edited"
+    else:
+        raise HTTPException(400, "action must be approve, edit, or reject")
+
+    return items[index]
