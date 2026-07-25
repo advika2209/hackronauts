@@ -13,6 +13,7 @@ export const patients = [
     status: "high",
     severity: "high",
     riskLevel: "high",
+    mrn: "MRN-2026-0847",
     primaryDoctor: "Dr. Rao (Cardiology)",
     conditions: ["Type 2 diabetes", "Hypertension"],
     upcomingProcedure: { type: "Cataract surgery", date: "2026-08-10" },
@@ -21,8 +22,8 @@ export const patients = [
 
 export const medications: Record<string, any[]> = {
   p5: [
-    { id: "m1", name: "Clopidogrel", dose: "75mg", frequency: "OD", prescriber: "Dr. Rao (Cardiology)", source_doc: "doc1", bbox: { x: 120, y: 340, w: 180, h: 28 }, confidence: 0.94, review_status: "pending", interactions: [], flags: [], risks: [], warnings: [], tags: [] },
-    { id: "m2", name: "Metformin", dose: "500mg", frequency: "BD", prescriber: "Dr. Iyer (Endocrinology)", source_doc: "doc2", bbox: { x: 100, y: 210, w: 160, h: 26 }, confidence: 0.9, review_status: "pending", interactions: [], flags: [], risks: [], warnings: [], tags: [] },
+    { id: "m1", name: "Clopidogrel", dose: "75mg", frequency: "OD", prescriber: "Dr. Rao (Cardiology)", source_doc: "doc1", bbox: { x: 120, y: 340, w: 180, h: 28 }, confidence: 0.94, review_status: "pending", status: "inferred", status: "inferred", interactions: [], flags: [], risks: [], warnings: [], tags: [] },
+    { id: "m2", name: "Metformin", dose: "500mg", frequency: "BD", prescriber: "Dr. Iyer (Endocrinology)", source_doc: "doc2", bbox: { x: 100, y: 210, w: 160, h: 26 }, confidence: 0.9, review_status: "pending", status: "inferred", status: "inferred", interactions: [], flags: [], risks: [], warnings: [], tags: [] },
   ],
 };
 
